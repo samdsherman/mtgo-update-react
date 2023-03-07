@@ -1,3 +1,37 @@
+## Purpose
+
+I made this to show my friend azax1 what life could be like if he used some tools of modern software development to make [his web site](www.mtgoupdate.com). He currently uses plain HTML, javascript, and jquery with a text editor with no syntax highlighting, no auto formatting, no linting etc. I intend to convince him to rectify all of that.
+
+## Instructions for Ari
+
+Install vscode
+clone this repo
+in the repo's root directory, run `npm install`
+`npm start` will open a browser to the local version of the site. if you edit the code and save, your changes will show up right away (you don't have to refresh).
+in vscode, go to extensions and get the Eslint extension and the Prettier extension
+in vscode, do cmd + p and type in settings.json to open vscode's settings file
+add the following to the json file (inside the json object):
+
+```
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+```
+
+now, when you edit a file, eslint and prettier will automatically format it and fix some errors.
+
+if you like, fork the repo or create your own to keep working on it.
+
+------- Create react app boilerplate readme begins here -------
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
