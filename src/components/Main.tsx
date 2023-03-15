@@ -3,6 +3,7 @@ import { createUseStyles } from "react-jss";
 import { EventType, Format } from "../types";
 import Filters from "./Filters";
 import Schedule from "./Schedule";
+import { getNextDst } from "../utils";
 
 const useStyles = createUseStyles({
   main: {
@@ -32,6 +33,7 @@ const Main: React.FC = () => {
   const classes = useStyles();
   const [format, setFormat] = useState<Format | undefined>();
   const [eventType, setEventType] = useState<EventType | undefined>();
+  const nextDst = getNextDst();
   return (
     <div className={classes.main}>
       <div>
@@ -50,8 +52,15 @@ const Main: React.FC = () => {
         <Schedule formatFilter={format} eventTypeFilter={eventType} />
       </div>
       <div className={classes.footer}>
-        Registering and maintaining this website isn{"'"}t free. Any{" "}
-        <a href="https://www.ko-fi.com/mtgoupdate">support</a> is appreciated.
+        <div>
+          Registering and maintaining this website isn{"'"}t free. Any{" "}
+          <a href="https://www.ko-fi.com/mtgoupdate">support</a> is appreciated.
+        </div>
+        {nextDst && (
+          <div>
+            Next DST change is {nextDst.format("YYYY MM DD HH mm ss z")}
+          </div>
+        )}
       </div>
     </div>
   );
