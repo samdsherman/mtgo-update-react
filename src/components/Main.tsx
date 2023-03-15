@@ -4,6 +4,7 @@ import { EventType, Format } from "../types";
 import Filters from "./Filters";
 import Schedule from "./Schedule";
 import { getNextDst } from "../utils";
+import moment from "moment-timezone";
 
 const useStyles = createUseStyles({
   main: {
@@ -61,6 +62,27 @@ const Main: React.FC = () => {
             Next DST change is {nextDst.format("YYYY MM DD HH mm ss z")}
           </div>
         )}
+        <div>
+          Here are some times.
+          <div>
+            November 5 2023 1am pacific:{" "}
+            {moment
+              .tz(1699171200000, moment.tz.guess())
+              .format("YYYY MM DD HH mm ss z")}
+          </div>
+          <div>
+            November 5 2023 2am pacific:{" "}
+            {moment
+              .tz(1699171200000 + 60 * 60 * 1000, moment.tz.guess())
+              .format("YYYY MM DD HH mm ss z")}
+          </div>
+          <div>
+            November 5 2023 3am pacific:{" "}
+            {moment
+              .tz(1699171200000 + 120 * 60 * 1000, moment.tz.guess())
+              .format("YYYY MM DD HH mm ss z")}
+          </div>
+        </div>
       </div>
     </div>
   );

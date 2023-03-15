@@ -16,10 +16,15 @@ const getNextDst = (date: Moment = moment(new Date())): Moment | undefined => {
       return undefined;
     }
   }
-  future.add(-1, "day");
-  future.hour(2);
-  future.tz(moment.tz.guess());
-  return future;
+  const userFuture = future.clone().tz(moment.tz.guess());
+  const afterOffset = userFuture.format("z");
+  const beforeOffset = userFuture.add(-1, "day").format("z");
+  if (afterOffset === beforeOffset) {
+    future.add(-1, "day");
+    future.hour(2);
+    future.tz(moment.tz.guess());
+    return future;
+  }
 };
 
 export default getNextDst;
